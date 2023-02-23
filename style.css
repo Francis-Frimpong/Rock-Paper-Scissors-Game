@@ -9,6 +9,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 #container {
@@ -23,6 +24,11 @@ body {
   padding: 3em;
 }
 
+.player1-char {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .player1-char > i {
   font-size: 2rem;
   margin-top: 2em;
@@ -32,17 +38,34 @@ body {
   border-radius: 50%;
 }
 
-.player2-char > i {
-  font-size: 2rem;
-  margin-top: 2em;
-  border: 4px solid black;
-  padding: 1em;
-  cursor: pointer;
-  border-radius: 50%;
+.winners-msg {
+  text-align: center;
+  margin-top: 4em;
+  margin-left: 2em;
+  font-size: 1.5em;
+  color: rgb(103, 43, 163);
 }
 
-.winners-msg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.play_btn {
+  box-shadow: 1px 3px 1px;
+  padding: 1.5em;
+  font-size: 1rem;
+  font-weight: 900;
+  border-radius: 60%;
+  background-color: skyblue;
+  color: whitesmoke;
+  border: none;
+  outline: none;
+}
+.reset_btn {
+  box-shadow: 1px 3px 1px;
+  padding: 1.1em;
+  margin-top: 1em;
+  font-size: 1rem;
+  font-weight: 900;
+  border-radius: 60%;
+  background-color: lightgreen;
+  color: whitesmoke;
+  border: none;
+  outline: none;
 }

@@ -5,75 +5,72 @@ let firstHand = document.querySelector("#hand1");
 let firstScissorsHand = document.querySelector("#hand-scissors1");
 
 //player1 score card
+let playerScore = 0;
+let machineScore = 0;
 let score1 = document.querySelector(".score-1");
-
-//Player2 icon characters
-const secondFistHand = document.querySelector(".hand-fist2");
-const secondHand = document.querySelector(".hand2");
-const secondScissorsHand = document.querySelector(".hand-scissors2");
 
 //player2 score card
 let score2 = document.querySelector(".score-2");
 
+let winingMsg = document.querySelector(".winners-msg");
+
 //Assigning items or symbols to it unique id.
-let gameSymbol = {
-  Rock: 1,
-  Paper: 2,
-  Scissors: 3,
-};
+//GameSymbols
+let rock = 1;
+let paper = 2;
+let scissors = 3;
 
-//Generating random numbers between 0 and 4.
-let random = Math.ceil(Math.random() * 3);
-if (random === gameSymbol.Rock) {
-  secondFistHand.style.color = "darkblue";
-} else if (random === gameSymbol.Paper) {
-  secondHand.style.color = "darkblue";
-} else if (random === gameSymbol.Scissors) {
-  secondScissorsHand.style.color = "darkblue";
-}
+let playButton = document.querySelector(".play_btn");
 
-//
-let playerOneChar = document.querySelector(".player1-char");
-
-playerOneChar.addEventListener("click", (e) => {
-  let target = e.target.id;
-
-  switch (target) {
-    case "hand-fist1":
-      firstFistHand = 1;
-      console.log(firstFistHand);
-      break;
-    case "hand1":
-      firstHand = 2;
-      console.log(firstHand);
-      break;
-    case "hand-scissors1":
-      firstScissorsHand = 3;
-      console.log(firstScissorsHand);
-      break;
-  }
+playButton.addEventListener("click", () => {
+  winingMsg.style.display = "block";
+  generateNums();
 });
 
-// let game = {
-//   rock: 1,
-//   paper: 2,
-//   scissors: 3,
+let resetButton = document.querySelector(".reset_btn");
+resetButton.addEventListener("click", () => {
+  reset();
+});
 
-//   choice: function () {
-//     let input = this.scissors;
+//Generating random numbers between 0 and 4 and controlling the flow of the game .
 
-//     let random = Math.ceil(Math.random() * 3);
-//     console.log(random);
-//     if (input === this.rock && random === this.scissors) {
-//       console.log("Rock beats scissors");
-//     } else if (input === this.paper && random === this.rock) {
-//       console.log("Paper beats rock");
-//     } else if (input === this.scissors && random === this.paper) {
-//       console.log("Scissors beats paper");
-//     } else {
-//       console.log("Try again!");
-//     }
-//   },
-// };
+function generateNums() {
+  let playerOne = Math.ceil(Math.random() * 3);
 
-// game.choice();
+  let machine = Math.ceil(Math.random() * 3);
+
+  if (playerOne === rock && machine === scissors) {
+    winingMsg.textContent =
+      "Player shows rock\nMachine shows scissors\nPlayer wins!.";
+    score1.textContent = `Player score:${(playerScore += 1)}`;
+  } else if (machine === rock && playerOne === scissors) {
+    winingMsg.textContent =
+      "Machine shows rock\nPlayer shows scissors\nMachine wins!.";
+    score2.textContent = `Machine score:${(machineScore += 1)}`;
+  } else if (playerOne === paper && machine === rock) {
+    winingMsg.textContent =
+      "Player shows paper\nMachine shows rock\nPlayer wins!.";
+    score1.textContent = `Player score:${(playerScore += 1)}`;
+  } else if (machine === paper && playerOne === rock) {
+    winingMsg.textContent =
+      "Machine shows paper\nPlayer shows rock\nMachine wins!.";
+    score2.textContent = `Machine score:${(machineScore += 1)}`;
+  } else if (playerOne === scissors && machine === paper) {
+    winingMsg.textContent =
+      "Player shows scissors\nMachine shows paper\nPlayer wins!.";
+    score1.textContent = `Player score:${(playerScore += 1)}`;
+  } else if (machine === scissors && playerOne === paper) {
+    winingMsg.textContent =
+      "Machine shows scissors\nPlayer shows paper\nMachine wins!.";
+    score2.textContent = `Machine score:${(machineScore += 1)}`;
+  } else {
+    winingMsg.textContent = "Its a tie, try again!";
+  }
+}
+
+//Reaset button function
+function reset() {
+  score1.textContent = `Player score:${(playerScore = 0)}`;
+  score2.textContent = `Machine score:${(machineScore = 0)}`;
+  winingMsg.style.display = "none";
+}
